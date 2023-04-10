@@ -1,0 +1,94 @@
+<!-- <div class="page-container" *ngIf="false">
+    <div class="d-flex flex-column w-350 m-auto my-auto align-items-center justify-content-center">
+        <div class=""><img src="../../../../../assets/images/connections.png" /></div>
+        <h3 class="my-10">There are no contacts added yet!</h3>
+        <button type="button" class="btn bg-accent-violet text-white" (click)="openConnectionModal()">Add Connection</button>
+    </div>
+</div> -->
+
+
+<div class="page-container">
+    <div class="m-20">
+        <div class="d-flex justify-content-between">
+            <h3>My Connections</h3>
+            <button type="button" class="btn bg-accent-violet text-white"  (click)="openConnectionModal()">Add Connections</button>
+        </div>
+        <div class="card clear-margin-x clear-margin-b border-bottom-0">
+            <div class="card-body grid-filters clear-padding">
+                <div class="report-filters">
+                    <div class="filters-container ng-star-inserted">
+                        <div dropdown="" class="filter dropdown ng-star-inserted">
+                            <a dropdowntoggle="" aria-haspopup="true" containerclass="max-w-300" container="body" id="departmentName" class="ng-star-inserted">
+                                <span class="filter-label">Ad Type</span>
+                                <span class="ki-arrow-dropdown"></span>
+                            </a>
+                        </div>
+                        <div dropdown="" class="filter dropdown ng-star-inserted">
+                            <a dropdowntoggle="" aria-haspopup="true" containerclass="max-w-300" container="body" id="departmentName" class="ng-star-inserted">
+                                <span class="filter-label">Category</span>
+                                <span class="ki-arrow-dropdown"></span>
+                            </a>
+                        </div>
+                        <div dropdown="" class="filter dropdown ng-star-inserted">
+                            <a dropdowntoggle="" aria-haspopup="true" containerclass="max-w-300" container="body" id="departmentName" class="ng-star-inserted">
+                                <span class="filter-label">Posted</span>
+                                <span class="ki-arrow-dropdown"></span>
+                            </a>
+                        </div>
+                        <div dropdown="" class="filter dropdown ng-star-inserted">
+                            <a dropdowntoggle="" aria-haspopup="true" containerclass="max-w-300" container="body" id="departmentName" class="ng-star-inserted">
+                                <span class="filter-label">Location</span>
+                                <span class="ki-arrow-dropdown"></span>
+                            </a>
+                        </div>
+                        <div class="flex-grow-1 border-bottom position-relative">
+                            <div class="input-search pr-40">
+                                <input type="text" placeholder="Search" name="filter" autocomplete="off" class="form-control border-0 h-100 w-100 ng-untouched ng-pristine ng-valid">
+                                <span class="ki-search ki ki-sm"></span>
+                            </div>
+                        </div>
+                        <div class="filter-actions">
+                            <div class="reset-filters">
+                                <a>
+                                    <span class="ki-refresh ki ki-sm"></span>
+                                    <span class="pl-8">Reset</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-default-4" *ngFor="let connection of connections">
+                <div class="card employee-profile-card">
+                    <div class="card-body employee-profile-header">
+                        <div class="profile profile-60">
+                            <div class="profile-picture-container">
+                                <img class="profile-picture" src="https://cdn.kekastatic.net/shared/assets/images/background/elephant.png" />
+                            </div>
+                        </div>
+                        <div class="employee-details">
+                            <div class="d-flex align-items-center">
+                                <h4 class="text-truncate">{{connection.name}}</h4>
+                            </div>
+                            <span>{{connection.about}}</span>
+                            <div class="d-flex align-items-center">
+                                <span class="ki ki-bank mr-2"></span>
+                                <span>{{connection.mutual}} </span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="ki ki-email"></span>
+                                <span>{{connection.email}}</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="ki ki-phone"></span>
+                                <span>{{connection.phoneNumber}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

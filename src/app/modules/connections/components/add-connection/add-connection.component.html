@@ -1,0 +1,40 @@
+<div>
+    <div class="modal-header">
+        <h5 class="modal-title">New Connection</h5>
+        <span class="ki ki-close" (click)="modalRef.hide()"></span>
+    </div>
+    <div class="modal-body h-700 overflow-scroll">
+        <div class="card nav-list-card clear-margin">
+            <div class="card-body clear-padding">
+                <div class="input-search">
+                    <input placeholder="Search"
+                        class="form-control p-8 text-x-small border-0 w-100 ng-untouched ng-pristine ng-valid" />
+                    <span class="ki ki-search"></span>
+                </div>
+                <div class="list-header">
+                    <label>Suggested</label>
+                </div>
+                <div class="list-group">
+                    <div>
+                        <div class="employee-profile-header justify-content-between border-bottom-dashed border-1px p-3" *ngFor="let connection of connections">
+                            <div class="d-flex align-items-center">
+                                <div class="profile">
+                                    <div class="profile-picture-container">
+                                        <img class="profile-picture" src="https://cdn.kekastatic.net/shared/assets/images/background/elephant.png" />
+                                    </div>
+                                </div>
+                                <div class="employee-details text-large">
+                                    <span class="title">{{connection.name}}</span>
+                                    <span class="sub-title">{{connection.about}}</span>
+                                 </div>
+                            </div>
+                            <div>
+                                <span class="ki ki-send text-link"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

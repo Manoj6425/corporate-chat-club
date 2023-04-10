@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h4 class="modal-title">Leave {{selectedChatTitle}}</h4>
+    <span class="ki ki-close" (click)="close()"></span>
+</div>
+
+<div class="mt-10 ml-20 mr-20">
+    <label>You will no longer be a part this club and the previous messages will be deleted from your account.<br> Do
+        you wish to continue?</label>
+    <div class="modal-footer p-20">
+        <button class="btn btn-secondary" (click)="close()">Cancel</button>
+        <button class="btn btn-danger">Leave</button>
+    </div>
+</div>

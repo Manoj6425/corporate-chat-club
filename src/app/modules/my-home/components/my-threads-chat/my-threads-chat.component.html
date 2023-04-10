@@ -1,0 +1,212 @@
+<div class="card mx-0 my-0 h-100 mail-box">
+
+    <div class=" d-flex align-items-center">
+        <div class="ml-20 my-10">
+            <h3>{{selectedChat.userName}}</h3>
+        </div>
+        <div class="dropdown ml-auto mr-20" dropdown container="body">
+            <a class="ki-click icon-click" dropdownToggle id="dropdown-menu" aria-haspopup="true"
+                aria-expanded="false ">
+                <span class="ki-more-vertical ki "></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right w-200" aria-labelledby="dropdown-menu" *dropdownMenu>
+                <li><a class="dropdown-item"><i class="ki ki-bell-ring"></i>Mute Notifications</a></li>
+                <li (click)=addToFavourites()><a class="dropdown-item"><i class="ki ki-heart-fill"></i>Mark as
+                        favorite</a></li>
+                <li><a class="dropdown-item"><i class="ki ki-exit"></i>Block Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- <div class=" card-body border h-400 screen-height-card bg-secondary px-20 py-8">
+        <div *ngIf="waitingToConnect">
+            <div class="card clear-margin align-items-center justify-content-center">
+                <div class="d-flex p-20 ">
+                    <div class="employee-profile-header">
+                        <div class="profile profile-120">
+                            <div class="profile-picture-container">
+                                <img class="profile-picture"
+                                    src="https://static.semrush.com/blog/uploads/media/43/b0/43b0b9a04c8a433a0c52360c9cc9aaf2/seo-guide-to-yoast-for-wordpress.svg"
+                                    alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h1 class="font-weight-bold"> you wants to connect with {{selectedChat.userName}} !</h1>
+                <div class="d-flex align-items-center pt-16">
+                    <i class="ki ki-bank"></i>
+                    <p class="px-8 text-large">20 in Mutual</p>
+                </div>
+                <div class="d-flex justify-content-between w-50 p-20">
+                    <div class="d-flex align-items-center">
+                        <i class="ki ki-mail"></i>
+                        <p class="px-8 text-large">{{selectedChat.userName}}@keka.com</p>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="ki ki-phone"></i>
+                        <p class="px-8 text-large">9133599880</p>
+                    </div>
+                </div>
+                <h4>You and {{selectedChat.userName}} Know</h4>
+                <p class="px-8 text-large p-16">uzumaki naruto , hinata, +21</p>
+                <h4 class="py-12">Waiting for {{selectedChat.userName}} to accept ....</h4>
+            </div>
+        </div>
+        <div *ngIf="requestedToConnect">
+            <div class="card clear-margin align-items-center justify-content-center">
+                <div class="d-flex p-20 ">
+                    <div class="employee-profile-header">
+                        <div class="profile profile-120">
+                            <div class="profile-picture-container">
+                                <img class="profile-picture"
+                                    src="https://static.semrush.com/blog/uploads/media/43/b0/43b0b9a04c8a433a0c52360c9cc9aaf2/seo-guide-to-yoast-for-wordpress.svg"
+                                    alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h1 class="font-weight-bold"> {{selectedChat.userName}} wants to connect with you !</h1>
+                <div class="d-flex align-items-center pt-16">
+                    <i class="ki ki-bank"></i>
+                    <p class="px-8 text-large">23 in Mutual</p>
+                </div>
+                <div class="d-flex justify-content-between w-50 p-20">
+                    <div class="d-flex align-items-center">
+                        <i class="ki ki-mail"></i>
+                        <p class="px-8 text-large">{{selectedChat.userName}}@keka.com</p>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="ki ki-phone"></i>
+                        <p class="px-8 text-large">7013267600</p>
+                    </div>
+                </div>
+                <h4>You and {{selectedChat.userName}} Know</h4>
+                <p class="px-8 text-large p-16">Vijay, Jahnavi, +21</p>
+                <div class="d-flex pb-20 ">
+                    <div class="border border-color-violet w-120 d-flex justify-content-center rounded mr-10">
+                        <button class="btn text-accent-violet clear-margin clear-padding" (click)="connect()">Connect
+                            Now</button>
+                    </div>
+                    <div class="border border-color-violet w-80 d-flex justify-content-center rounded">
+                        <button class="btn text-accent-violet clear-margin clear-padding"
+                            (click)="block()">Block</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div> -->
+
+    <div class=" card-body border h-400 screen-height-card bg-secondary px-20 py-8" [scrollTop]="scrollMe.scrollHeight" #scrollMe>
+        <div class="d-flex flex-column mb-10" *ngFor="let message of merged">
+            <div class=" align-self-end" *ngIf="currentUserId == message.senderId">
+                <div class="d-flex align-items-center justify-content-end my-10">
+                    <div class="employee-profile-header">
+                        <div class="profile profile-24">
+                            <div class="profile-picture-container" *ngIf="message.iconUrl">
+                                <img class="profile-picture" src={{message.iconUrl}} alt="">
+                            </div>
+                            <div class="profile-picture " *ngIf="!message.iconUrl && !message.isChatUpdatedLog">
+                                <span class=" img-initials ki ki-user text-black border "></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="mx-10 text-normal text-primary text-capitalize" *ngIf="!message.isChatUpdatedLog">{{currentUserName}}</h5>
+                    <h6 class="text-x-small text-secondary text-normal" *ngIf="!message.isChatUpdatedLog">{{message.timeStamp | date:'MMM dd, YYYY
+                        \'at
+                        \'HH:MM' }}
+                    </h6>
+                </div>
+                <div class="card clear-margin p-8 w-auto bg-accent-violet text-white border-radius-6" *ngIf="!message.isChatUpdatedLog">
+                    <div>{{message.body}}</div>
+                    <div class="d-flex align-items-center" *ngIf="message.attachments">
+                        <ng-container *ngFor = "let file of message.attachments">
+                              <i class="ki ki-sm ki-attachment"></i>
+                              <span class="mr-10 text-truncate-1">{{file}}</span>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+            <div class=" align-self-start" *ngIf="currentUserId != message.senderId ">
+                <div class="d-flex align-items-center my-10">
+                    <div class="employee-profile-header">
+                        <div class="profile profile-24">
+                            <div class="profile-picture-container" *ngIf="message.iconUrl">
+                                <img class="profile-picture" src={{message.iconUrl}} alt="">
+                            </div>
+                            <div class="profile-picture-container" *ngIf="!message.iconUrl">
+                                <span class="ki ki-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="mr-10 text-normal text-primary text-capitalize">{{message.senderName}}</h5>
+                    <h6 class="text-x-small text-secondary text-normal">{{message.timeStamp | date:'MMM dd, YYYY
+                        \'at
+                        \'HH:MM' }}
+                    </h6>
+                </div>
+                <div class="card clear-margin p-8 w-300" *ngIf="!message.isChatUpdatedLog">
+                    {{message.body}}
+                </div>
+            </div>
+            <div class="d-flex align-items-center mt-20" *ngIf="message.isChatUpdatedLog">
+                <div class="flex-grow-1 mr-16">
+                    <hr>
+                </div>
+                <p class="text-small text-secondary max-w-540 text-center">
+                    {{message.body}} is Instruction
+                </p>
+                <div class="flex-grow-1 ml-16">
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card min-h-60 mx-0 my-0 border-0">
+
+        <div class="d-flex justify-content-between align-items-center mt-0">
+            <div class="w-75"><input type="text" class="form-control chip-dropdown border-0"
+                    placeholder="Type a message here" (keydown.enter)="addMessage()" [(ngModel)]="inputMessage">
+            </div>
+
+            <div class="d-flex">
+                <div>
+                    <div url="/api/fileupload/default/HelpDesk/" label="Attach File">
+                        <div class="d-inline-flex justify-content-center align-items-center">
+                            <div containerclass="max-w-300" container="body" class="d-inline-block position-relative">
+                                <span class="d-inline-flex align-items-center cursor-pointer"><span
+                                        class="ki ki-lg ki-attachment text-accent-violet"></span></span>
+                                <input type="file" name="fileupload" class="input-file" title="No file chosen"
+                                    accept=".png,.jpg,.jpeg,.doc,.docx,.pdf,.xps,.xls,.xlsx"
+                                    (change)="uploadFiles($event)" multiple>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex"><i class="ki ki-lg ki-face-smile text-success" (click)="sendEmoji()"></i><i
+                        class="ki ki-lg ki-send ml-20" (click)="addMessage()"></i></div>
+            </div>
+
+        </div>
+
+        <div class="d-flex">
+            <div class="chip-wrapper border-bottom-0 ml-10" *ngFor="let item of filesArray;let i =index">
+                <div class="chips employee-profile-header">
+                    <div displayname="Example Chip" firstname="Example" lastname="Chip" index="3" profileimageurl=""
+                        class="profile profile-28">
+                        <div class="profile-picture-container">
+                            <div class="profile-picture ng-star-inserted">
+                                <div class="img-initials bg-accent-violet"> EC </div>
+                            </div>
+                        </div>
+                    </div><span class="name">{{item}}</span><span class="ki ki-cancel-circle"
+                        (click)="removeFile(i)"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

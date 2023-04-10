@@ -1,0 +1,207 @@
+<div class="border border-top-0 mb-0 h-100 mail-box border-left-0">
+    <div class="card mx-0 my-0">
+        <div class="card-body d-flex justify-content-between">
+            <div><span class="ki ki-60 ki-user ml-40 my-20"></span></div>
+            <div class=" w-75">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex mb-10">
+                        <h3>{{selectedChat.title}}</h3> <i class="ki ki-lock ml-20" *ngIf="selectedChat.visibility == 0"></i>
+                    </div>
+                    <div><i class="ki ki-edit"></i><i class="ki ki-close ml-20" routerLink="../chat"></i></div>
+                </div>
+                <div class="">
+                    <p class="text-color-secondary mb-10">It is long established fact that a reader will be distracted
+                        by
+                        the readable <br>
+                        content of a page when looking at its layout</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <p class="text-color-secondary">Created by {{selectedChat.createdBy}} on {{selectedChat.createdOn |
+                            date}}</p>
+                    </div>
+                    <div class="d-flex">
+                        {{selectedChat.participants}}483<p class="text-color-secondary ml-20">Participants</p>
+
+                        <div class="dropdown " dropdown>
+                            <a class="icon-click" dropdownToggle id="dropdown-menu" aria-haspopup="true"
+                                aria-expanded="false">
+                                <span class="ki ki-add-user ml-20"></span>
+                            </a>
+                            <ul (click)="$event.stopPropagation()" class="dropdown-menu dropdown-menu-right w-350 "
+                                aria-labelledby="dropdown-menu" *dropdownMenu>
+
+                                <li class="ml-20">
+                                    <p class="font-weight-600 mb-10">Select the users you want to add</p>
+                                </li>
+
+                                <li class="ml-20 mr-40">
+                                    <div class="input-search input-sm">
+                                        <input type="text" class="form-control"
+                                            placeholder="Type the user name you want to add">
+                                    </div>
+                                </li>
+
+                                <li class="ml-10" *ngFor="let item of groups;let i =index">
+                                    <label class="dropdown-item">
+                                        <input class="checkbox-sm" type="checkbox" id=`action${{i}}` (click)="usersSelected(item.request.id)">
+                                        <label for=`action${{i}}`>
+                                            <div class="d-flex  align-items-center">
+                                                <div>
+                                                    <span class="ki ki-user "></span>
+                                                </div>
+                                                <div class="ml-10">
+                                                    <label>{{item.request.name}}</label>
+                                                    <div><span class="text-link">{{item.request.email}}</span></div>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </label>
+                                </li>
+
+                                <li *ngIf="noOfUsersSelected!=0">
+                                    <div class="d-flex card-footer justify-content-between align-items-center">
+                                        <div>
+                                            <p class="bg-secondary">{{noOfUsersSelected}} Members Selected</p>
+                                        </div>
+                                        <div><button class="btn btn-primary btn-sm bg-accent-violet">Add
+                                                Members</button></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between w-100 ml-20 mt-10 mail-box">
+        <div>
+            <h3>Participants</h3>
+            <div class=" card nav-list-card clear-margin w-350 ">
+                <div class="card-body clear-padding">
+                    <div class="input-search">
+                        <input type="text" class="form-control" placeholder="Search Club" [(ngModel)]="searchParticipants">
+                        <span class="ki-search ki ki-sm "></span>
+                    </div>
+                    <div class="max-h-320 overflow-auto">
+                        <ul class="list-group " *ngFor="let item of groups | filter:searchParticipants">
+                            <li class="list-group-item">
+                                <div class="d-flex">
+                                    <div>
+                                        <span class="ki ki-user"></span>
+                                    </div>
+                                    <div class="ml-10"><div class="d-flex"><label>{{item.request.name}}</label><span *ngIf="item.role == 1" class="ki ki-shield-check"></span></div>
+                                        <div class="d-flex">
+                                            <span class="text-link">{{item.request.email}}</span>
+                                            <div *ngIf="item.status == 1" class="d-flex ml-10 align-items-center">
+                                                <div class="dot dot-xs bg-success"></div>
+                                                <div class="text-success ml-10">Active</div>
+                                            </div>
+                                            <div *ngIf="item.status == 0 && !item.isBlocked" class="d-flex ml-10 align-items-center">
+                                                <div class="dot dot-xs bg-danger"></div>
+                                                <div class="text-danger ml-10">Inactive</div>
+                                            </div>
+                                            <div *ngIf="item.isBlocked" class="d-flex ml-10 align-items-center">
+                                                <div class="dot dot-xs bg-danger"></div>
+                                                <div class="text-danger ml-10">Blocked</div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- <div><i *ngIf="item.role == 1" class="ki ki-shield-check"></i></div> -->
+                                    <div class="dropdown ml-auto" dropdown container="body">
+                                        <a class="ki-click icon-click" dropdownToggle id="dropdown-menu"
+                                            aria-haspopup="true" aria-expanded="false ">
+                                            <span class="ki-more-vertical ki"></span>
+                                        </a>
+                                        <!-- <p>{{item.timestamp | date:'shortTime'}}</p> -->
+                                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-menu"
+                                            *dropdownMenu>
+                                            <li><a class="dropdown-item">Remove as Admin</a></li>
+                                            <li (click)="blockUser(item)"><a class="dropdown-item">Block Member</a></li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=" ml-20 w-100 mr-20">
+            <div class="mb-20 mr-20" *ngIf="requests.length!=0">
+                <h3>Requests</h3>
+                <div class="card mx-0 my-0" *ngIf="selectedChat.visibility == 0">
+                    <div class="card-body"><p class="text-danger">No Requests to show becz.. Club is Private..</p></div></div>
+                <div class=" max-h-300 overflow-auto" *ngIf="selectedChat.visibility != 0">
+                    <div class="card nav-list-card clear-margin">
+                        <div class="card-body clear-padding">
+                            <div class="list-group">
+                                <div>
+                                    <div class="employee-profile-header justify-content-between border-bottom-dashed border-secondary border-1px p-2"
+                                        *ngFor="let item of requests">
+                                        <div class="d-flex align-items-center">
+                                            <div class="profile">
+                                                <div class="profile-picture-container">
+                                                    <img class="profile-picture"
+                                                        src="https://cdn.kekastatic.net/shared/assets/images/background/elephant.png" />
+                                                </div>
+                                            </div>
+                                            <div class="employee-details text-large">
+                                                <span class="title">{{item.name}}</span>
+                                                <span class="sub-title">{{item.email}}</span>
+                                            </div>
+                                        </div>
+                                        <div><i class="ki ki-check-circle-fill  text-success" (click)="addRequest(item.id)"></i><i
+                                                class="ki ki-cancel-circle text-danger" (click)="deleteRequest(item.id)"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class=" mr-20 mb-0">
+                <h3>Group Settings</h3>
+                <div class="card mx-0 my-0">
+                    <div class="card-body w-400">
+               <form action="" [formGroup]="myform">
+                        <div class="form-group d-flex mb-0">
+                            <p class="mr-3">This Club is a Public Club</p>
+                            <input type="checkbox" class="toggle-switch" id="clubType" formControlName="isPublic">
+                            <label for="clubType" class="switch-label "></label>
+                        </div>
+
+                        <div class="d-flex flex-column ml-20 mb-0 mt-10 form-group">
+                            <input type="radio" class="radio-button-sm" name="clubStatus"  id="openClub"
+                                formControlName="clubStatus" value="open" />
+                            <label for="openClub">Open Club</label>
+                            <input type="radio" class="radio-button-sm"  name="clubStatus" id="closeClub"
+                            formControlName="clubStatus" value="close" />
+                            <label for="closeClub">Close Club</label>
+                        </div>
+
+                        <div class="mb-20 mt-10">
+                            <input type="checkbox" class="checkbox-sm" id="checkbox-example-sm">
+                            <label for="checkbox-example-sm">Mute all the Notifications & messages from this
+                                club</label>
+                        </div>
+                    </form>
+
+                        <div>
+                            <button class="btn btn-link btn-sm" (click)="openDeactivateModel()">Deactivate Club</button>
+                            <button class="btn btn-link btn-sm ml-20" (click)="openLeaveModel()">Exit Club</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

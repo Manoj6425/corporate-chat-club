@@ -1,0 +1,110 @@
+<div class="page-title d-flex align-items-center mb-10">
+    <div class="left-card mt-30 ml-20">
+        <h1>All Clubs</h1>
+    </div>
+    <div class="right-card ml-auto mt-30 mr-20">
+        <button class="bg-blue border-0 px-20 py-2 border-radius-6 text-white">Add Club</button>
+    </div>
+</div>
+
+
+<div class="ml-20 mr-20 ">
+    <div class="card clear-margin-x">
+        <div class="card-body grid-filters clear-padding">
+            <div class="report-filters">
+                <div class="filters-container ng-star-inserted">
+                    <div dropdown="" class="filter dropdown ng-star-inserted">
+                        <a dropdowntoggle="" aria-haspopup="true" containerclass="max-w-300" container="body"
+                            id="departmentName" class="ng-star-inserted"><span><span class="filter-label">Club
+                                    Type</span> </span><span class="ki-arrow-dropdown"></span></a>
+                    </div>
+                    
+                    <div dropdown="" class="filter dropdown ng-star-inserted">
+                        <a dropdowntoggle="" aria-haspopup="true" containerclass="max-w-300" container="body"
+                            id="locationName" class="ng-star-inserted"><span><span class="filter-label">Status</span>
+                               
+                            </span>
+                            <span class="ki-arrow-dropdown"></span></a>
+                    </div>
+
+                    <div dropdown="" class="filter dropdown ng-star-inserted">
+                        <a dropdowntoggle="" aria-haspopup="true" containerclass="max-w-300" container="body"
+                            id="locationName" class="ng-star-inserted"><span><span class="filter-label">Date
+                                    Created</span>
+                             
+                            </span>
+                            <span class="ki-arrow-dropdown"></span></a>
+                    </div>
+
+                    <div class="flex-grow-1 border-bottom position-relative">
+                        <div class="input-search mr-40 ng-star-inserted">
+                            <input type="text" placeholder="Search" name="filter" autocomplete="off"
+                                class="form-control border-0 h-100 w-100 ng-untouched ng-pristine ng-valid"  [(ngModel)]="searchClub"/>
+                            <span class="ki-search ki ki-sm"></span>
+                        </div>
+                    </div>
+
+                    <div class="filter-actions">
+                        <div class="reset-filters"><a><span class="ki-refresh ki ki-sm"></span><span
+                                    class="pl-8">Reset</span></a></div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- <div class="grid-options">
+              <div></div>
+              <div>
+                <p class="text-x-small text-secondary">Total 10</p>
+              </div>
+            </div> -->
+        </div>
+    </div>
+
+
+    <div class="row no-gutters mt-0">
+        <div class="col-default-3"  *ngFor="let item of clubData | filter:searchClub" >
+            <div class="card">
+                <div class=" d-flex align-items-center">
+                    <div class="ml-10 mt-10 mb-10">
+                        <h3>{{item.clubTitle}}</h3>
+                    </div>
+                    <div class="dropdown ml-auto" dropdown container="body">
+                        <a class="ki-click icon-click" dropdownToggle id="dropdown-menu" aria-haspopup="true"
+                            aria-expanded="false ">
+                            <span class="ki-more-vertical ki "></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-menu" *dropdownMenu>
+                            <li><a class="dropdown-item">Report this club</a></li>
+                            <li><a class="dropdown-item" (click)="openDeactivateModel()">Deactivate club</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mb-20 text-center " >
+                    <div *ngIf="item.imgUrl" >
+                                  <img class="w-100" src="{{item.imgUrl}}" alt="">
+                    </div>
+                    <div *ngIf="!item.imgUrl" class="bg-slate">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" ngClass="h-200 w-200" fill="currentColor" class="ki ki-user-group" viewBox="0 0 16 16">
+                            <path d="M7.998 9.333c1.196 0 2.148-.97 2.148-2.166C10.146 5.97 9.176 5 7.998 5 6.802 5 5.85 5.97 5.85 7.167a2.14 2.14 0 0 0 2.148 2.166Zm0-3.666c.827 0 1.5.673 1.5 1.5s-.675 1.5-1.5 1.5-1.5-.673-1.5-1.5.673-1.5 1.5-1.5ZM9.04 10H6.96C5.325 10 4 11.244 4 12.777c0 .308.265.556.592.556h6.816c.328 0 .592-.248.592-.556C12 11.244 10.675 10 9.04 10Zm-4.37 2.667c.064-1.113 1.067-2 2.274-2H9.04c1.224 0 2.227.887 2.273 2H4.67ZM12 6a1.667 1.667 0 1 0 0-3.333A1.667 1.667 0 0 0 12 6Zm0-2.667a1.001 1.001 0 0 1 0 2 1 1 0 0 1 0-2ZM4 6a1.667 1.667 0 1 0 0-3.334A1.667 1.667 0 0 0 4 6Zm0-2.667a1.001 1.001 0 0 1 0 2 1 1 0 0 1 0-2Zm9.023 3.334h-1.356c-.233 0-.46.052-.677.155a.333.333 0 0 0 .286.602.915.915 0 0 1 .39-.09h1.357c.52 0 .977.472.977 1.056v.277a.333.333 0 1 0 .667 0V8.39c0-.95-.738-1.723-1.644-1.723Zm-8.298.756a.334.334 0 0 0 .286-.602 1.58 1.58 0 0 0-.678-.154H2.978c-.907 0-1.645.773-1.645 1.723v.277a.333.333 0 1 0 .667 0V8.39c0-.584.439-1.057.978-1.057h1.355c.134 0 .265.032.392.09Z"/>
+                          </svg>
+                        
+                    </div>
+                    <p class="ml-10 mt-10">{{item.clubDescription}}</p>
+                    <span class=" ml-10 mr-10  text-secondary text-x-small font-weight-semi-bold">Created by {{item.clubCreatedBy}} on {{item.createdOn}}</span>
+                </div>
+                <div class="d-flex align-items-center ml-10 mr-10 mb-10">
+                    <div class=" d-flex align-items-center"><span class="ki ki-user"></span> <span class="ml-10 mr-10  text-secondary text-small">{{item.noOfMembers}}</span></div>
+                    <div class="ml-auto">
+
+                        <button *ngIf="item.isPrivate && !item.isMember && !item.isRequestSent" class=" btn btn-sm bg-accent-violet" (click)="requestToJoin(item.id)">Request Join</button>
+                        <button *ngIf="item.isPrivate && !item.isMember && item.isRequestSent" class=" btn btn-sm bg-accent-violet" (click)="cancelRequest(item.id)">Cancel Request</button>
+                        <button *ngIf="!item.isPrivate && !item.isMember" class=" btn btn-sm bg-accent-violet" (click)="joinClub(item.id)">Join</button>
+                        <button *ngIf="!item.isPrivate && item.isMember" class=" btn btn-sm bg-accent-violet" (click)="exitClub(item.id)">Exit Club</button>
+                        <button *ngIf="item.isPrivate && item.isMember" class=" btn btn-sm bg-accent-violet" (click)="exitClub(item.id)">Exit Club</button>
+                        <!-- <button class=" btn btn-sm bg-accent-violet">Join</button></div> -->
+                </div>
+                
+            </div>
+
+        </div>
+</div>

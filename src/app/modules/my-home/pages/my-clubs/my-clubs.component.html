@@ -1,0 +1,73 @@
+<div class="page-title d-flex align-items-center mb-20">
+    <div class="left-card mt-20 ml-20">
+        <h2>My Clubs</h2>
+    </div>
+    <div class="right-card ml-auto mt-20 mr-20">
+        <button class="bg-accent-violet border-0 px-20 py-2 border-radius-6 text-white">Create New</button>
+    </div>
+</div>
+
+<div class=" d-flex mt-10 mx-20 h-100">
+    <div class=" card nav-list-card clear-margin w-400 ">
+        <div class="card-body clear-padding">
+            <div class="input-search ">
+                <input type="text" class="form-control py-24 border-0" placeholder="Search Club" [(ngModel)]="searchChat">
+                <span class="ki-search ki ki-sm "></span>
+            </div>
+
+            <div class="list-header">
+                <label>Favourites</label>
+            </div>
+            <div class="max-h-320 overflow-auto">
+                <ul class="list-group " *ngFor="let item of groups | filter:searchChat">
+                    <li class="list-group-item border-top-0  border-2px border-bottom-dashed" *ngIf="!item.isFavourite"
+                        routerLink="{{item.id}}/chat" routerLinkActive="active" (click)="removeUnseenMessageCount(item)">
+                        <div class="d-flex ">
+                            <div>
+                                <span class="ki ki-user "></span>
+                            </div>
+                            <div class="ml-10"><label>{{item.title}}</label>
+                                <span class="text-link"><span  *ngIf="currentUserId == item.senderId">You: </span><span *ngIf="currentUserId != item.senderId">{{item.senderName}}: </span>{{item.body}}</span>
+                            </div>
+                            <div class="ml-auto">
+                                <p>{{item.timeStamp | date:'shortTime'}}</p>
+                                <span *ngIf="item.unReadMessageCount!=0" class="badge badge-pill mt-10 bg-warning text-small">{{item.unReadMessageCount}}</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="list-header">
+                <label>clubs</label>
+            </div>
+            <div class="max-h-320 overflow-auto">
+                <ul class="list-group " *ngFor="let item of groups | filter:searchChat | sortBy : 'desc': 'timeStamp'">
+                    <li class="list-group-item border-top-0   border-2px border-bottom-dashed" *ngIf="item.isFavourite"
+                        routerLink="{{item.id}}/chat" routerLinkActive="active" (click)="removeUnseenMessageCount(item)">
+                        <div class="d-flex justify-content-between">
+
+                            <div><span class="ki ki-user "></span> </div>
+                            <div class="ml-10"><label>{{item.title}}</label>
+                                    <span class="text-link"><span  *ngIf="currentUserId == item.senderId">You: </span><span *ngIf="currentUserId != item.senderId">{{item.senderName}}: </span>{{item.body}}</span>
+                            </div>
+                            <div class="ml-auto">
+                                <p>{{item.timeStamp | date:'shortTime'}}</p>
+                                <span *ngIf="item.unReadMessageCount!=0" class="badge badge-pill mt-10 bg-warning">{{item.unReadMessageCount}}</span>
+
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+    <div class=" review-cards w-100">
+        <router-outlet></router-outlet>
+    </div>
+
+
+</div>

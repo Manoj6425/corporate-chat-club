@@ -1,0 +1,14 @@
+<div class="modal-header">
+    <h4 class="modal-title">Mute {{selectedChatTitle}}</h4>
+    <span class="ki ki-close" (click)="close()"></span>
+</div>
+
+<div class="mt-10 ml-20 mr-20">
+    <label>This will mute all the messages and notifications regarding this club until it is unmuted.<br>Do you wish to
+        continue?</label>
+
+    <div class="modal-footer p-20">
+        <button class="btn btn-secondary" (click)="close()">Cancel</button>
+        <button class="btn bg-accent-violet">Confirm</button>
+    </div>
+</div>

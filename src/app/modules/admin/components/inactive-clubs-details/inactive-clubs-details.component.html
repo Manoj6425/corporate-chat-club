@@ -1,0 +1,49 @@
+<!-- <div class="app-container"> -->
+
+<div class="mt-40 mb-20 ml-20">
+  <h3>Inactive Clubs</h3>
+</div>
+
+<div class="ml-20 mr-20">
+  <div class="card clear-margin-x">
+    <div class="card-body grid-filters clear-padding">
+      <div class="report-filters">
+        <div class="filters-container ng-star-inserted">
+          <div dropdown="" class="filter dropdown ng-star-inserted">
+            <a dropdowntoggle="" aria-haspopup="true" containerclass="max-w-300" container="body" id="departmentName"
+              class="ng-star-inserted"><span><span class="filter-label">Department</span> </span><span
+                class="ki-arrow-dropdown"></span></a>
+          </div>
+          <!---->
+          <div dropdown="" class="filter dropdown ng-star-inserted">
+            <a dropdowntoggle="" aria-haspopup="true" containerclass="max-w-300" container="body" id="locationName"
+              class="ng-star-inserted"><span><span class="filter-label">Location</span>
+                <!----></span>
+                <span class="ki-arrow-dropdown"></span></a>
+          </div>
+
+          <div class="flex-grow-1 border-bottom position-relative">
+            <div class="input-search mr-40 ng-star-inserted">
+              <input type="text" placeholder="Search" name="filter" autocomplete="off"
+                class="form-control border-0 h-100 w-100 ng-untouched ng-pristine ng-valid" />
+                <span class="ki-search ki ki-sm"></span>
+            </div>
+          </div>
+          
+          <div class="filter-actions"><div class="reset-filters"><a><span class="ki-refresh ki ki-sm"></span><span class="pl-8">Reset</span></a></div></div>
+
+        </div>
+      </div>
+      <div class="grid-options">
+        <div></div>
+        <div>
+          <p class="text-x-small text-secondary">Total 10</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ag-grid-angular class="ag-theme-material h-350 w-100" [gridOptions]="employeeGrid">
+  </ag-grid-angular>
+</div>
+<!-- </div> -->

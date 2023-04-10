@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h4 class="modal-title">Deactivate {{selectedChatTitle}}</h4>
+    <span class="ki ki-close" (click)="close()"></span>
+  </div>
+
+<div class="mt-10 ml-20 mr-20">
+    <h5 class="mb-10">What happens next?</h5>
+    <div class="mb-20">
+        <ul class="list-style-circle">
+            <li>Current club users will no longer be able to continue conversation in this club and the club owners can no longer edit the manage the club</li>
+            <li>All the actions will be disabled until the club is reactivated</li>
+        </ul>
+    </div>
+    <div class="form-group">
+        <label>Reason</label>
+        <input type="text" class="form-control input-xl">
+   </div>
+
+    <div class="modal-footer p-20">
+        <button class="btn btn-secondary" (click)="close()">Cancel</button>
+        <button class="btn bg-accent-violet">Confirm</button>
+    </div>
+</div>
+
+
+
+
